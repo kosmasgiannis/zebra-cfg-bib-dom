@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<retrievalinfo xmlns="http://indexdata.com/yaz">
+  <retrieval syntax="usmarc" name="F">
+    <backend syntax="xml" name="F">
+      <marc inputformat="xml" outputformat="marc"
+            inputcharset="utf-8"
+            outputcharset="utf-8"/>
+    </backend>
+  </retrieval>
+  <retrieval syntax="usmarc" name="B">
+    <backend syntax="xml" name="B">
+      <marc inputformat="xml" outputformat="marc"
+            inputcharset="utf-8"
+            outputcharset="utf-8"/>
+    </backend>
+  </retrieval>
+
+  <retrieval syntax="xml" name="F"
+             identifier="info:srw/schema/1/marcxml-v1.1"/>
+  <retrieval syntax="xml" name="B"
+             identifier="info:srw/schema/1/marcxml-v1.1"/>
+  <retrieval syntax="xml" name="marcxml"
+             identifier="info:srw/schema/1/marcxml-v1.1"/>
+  <retrieval syntax="xml" name="marc"
+             identifier="info:srw/schema/1/marcxml-v1.1"/>
+  <retrieval syntax="xml" name="dc">
+    <backend syntax="xml" name="F">
+       <xslt stylesheet="./xsl/MARC21slim2SRWDC.xsl"/>
+    </backend>
+  </retrieval>
+  <retrieval syntax="xml" name="oai_dc">
+    <backend syntax="xml" name="F">
+      <xslt stylesheet="./xsl/MARC21slim2OAIDC.xsl"/>
+    </backend>
+  </retrieval>
+  <retrieval syntax="xml" name="mods">
+    <backend syntax="xml" name="F">
+      <xslt stylesheet="./xsl/MARC21slim2MODS.xsl"/>
+    </backend>
+  </retrieval>
+  <retrieval syntax="xml" name="utils">
+    <backend syntax="xml" name="F">
+      <xslt stylesheet="./xsl/MARC21slimUtils.xsl"/>
+    </backend>
+  </retrieval>
+
+  <retrieval syntax="xml" name="zebra::index"/> <!-- allow viewing index entries -->
+  <retrieval syntax="xml" name="zebra::meta"/> <!-- allow viewing zebra meta -->
+  <retrieval syntax="xml" name="zebra::data"/> <!-- allow viewing zebra data -->
+  <retrieval syntax="xml" name="zebra::snippet"/> <!-- allow viewing zebra snippet -->
+  <retrieval syntax="xml" name="zebra::meta::sysno"/> <!-- allow viewing zebra snippet -->
+</retrievalinfo>
