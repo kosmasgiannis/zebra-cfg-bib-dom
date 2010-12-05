@@ -278,7 +278,7 @@ Free Software Foundation, 59 Temple Place - Suite 330, Boston, MA
 
    -->
    <xsl:template name="Any">
-     <xsl:for-each select="marc:datafield[@tag='500' or @tag='530' or @tag='590' or @tag='504' or @tag='505' or @tag='510' or @tag='546' or @tag='590']">
+     <xsl:for-each select="marc:datafield[@tag='500' or @tag='530' or @tag='504' or @tag='505' or @tag='510' or @tag='546' or @tag='590']">
        <z:index name="any:w">
          <xsl:value-of select="."/>
        </z:index>
@@ -1032,7 +1032,7 @@ Subject                21  The primary topic on which a    600, 610, 611, 630,
       </z:index>
     </xsl:for-each>
 -->
-    <xsl:for-each select="marc:datafield[@tag='600' or @tag='610' or @tag='611' or @tag='630' or @tag='650' or @tag='651' or @tag='653' or @tag='654' or @tag='655' or @tag='656' or @tag='657' or @tag='658' or @tag='662' ]">
+    <xsl:for-each select="marc:datafield[@tag='600' or @tag='610' or @tag='611' or @tag='630' or @tag='650' or @tag='651' or @tag='653' or @tag='654' or @tag='655' or @tag='656' or @tag='657' or @tag='658' or @tag='662' or @tag='690']">
       <z:index name="Subject-heading:w any:w">
         <xsl:value-of select="marc:subfield[@code='a']/text()"/>
         <xsl:for-each select="marc:subfield[contains('bcdnqvxyz',@code)]">
@@ -1196,6 +1196,29 @@ Title                   4  A word, phrase, character,      130, 21X-24X, 440,
         </xsl:if>
       </z:index>
 
+      <z:index name="title:s">
+        <xsl:value-of select="substring(marc:subfield[@code='a']/text(), $chop)"/>
+      </z:index>
+    </xsl:for-each>
+
+    <xsl:for-each select="marc:datafield[@tag='740']">
+      <xsl:variable name="chop">
+        <xsl:choose>
+          <xsl:when test="not(number(@ind2))">1</xsl:when>
+          <xsl:otherwise><xsl:value-of select="number(@ind2 + 1)"/></xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
+      <z:index name="title:w title:p any:w">
+        <xsl:value-of select="marc:subfield[@code='a']/text()"/>
+        <xsl:if test="marc:subfield[@code='n']">
+          <xsl:text> </xsl:text>
+          <xsl:value-of select="marc:subfield[@code='n']/text()"/>
+        </xsl:if>
+        <xsl:if test="marc:subfield[@code='p']">
+          <xsl:text> </xsl:text>
+          <xsl:value-of select="marc:subfield[@code='p']/text()"/>
+        </xsl:if>
+      </z:index>
       <z:index name="title:s">
         <xsl:value-of select="substring(marc:subfield[@code='a']/text(), $chop)"/>
       </z:index>
