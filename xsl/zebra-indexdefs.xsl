@@ -1243,7 +1243,7 @@ Title                   4  A word, phrase, character,      130, 21X-24X, 440,
         <xsl:value-of select="./text()"/>
       </z:index>
     </xsl:for-each>
-    <xsl:for-each select="marc:datafield[@tag='130' or @tag='730'">
+    <xsl:for-each select="marc:datafield[@tag='130' or @tag='730']">
       <z:index name="title:w any:w Title-uniform:w">
         <xsl:value-of select="marc:subfield[@code='a']/text()"/>
         <xsl:for-each select="marc:subfield[contains('dfghiklmnoprstxv',@code)]">
@@ -1265,7 +1265,7 @@ Title                   4  A word, phrase, character,      130, 21X-24X, 440,
         <xsl:for-each select="marc:subfield[contains('dfgiklmnoprstv',@code)]">
           <xsl:text> </xsl:text>
           <xsl:value-of select="./text()"/>
-        </xsl:if>
+        </xsl:for-each>
       </z:index>
     </xsl:for-each>
 
