@@ -60,20 +60,19 @@ Free Software Foundation, 59 Temple Place - Suite 330, Boston, MA
       <xsl:choose>
         <xsl:when test="$leader6='a'">
           <xsl:choose>
-            <xsl:when test="$leader7='a' or $leader7='c' or $leader7='d'
-                             or $leader7='m'">BK</xsl:when>
-            <xsl:when test="$leader7='b' or $leader7='i' 
-                             or $leader7='s'">SE</xsl:when>
+            <xsl:when test="$leader7='c' or $leader7='d' or $leader7='m'">BK</xsl:when>
+            <xsl:when test="$leader7='i' or $leader7='s'">SE</xsl:when>
+            <xsl:when test="$leader7='a' or $leader7='b'">AR</xsl:when>
           </xsl:choose>
         </xsl:when>
         <xsl:when test="$leader6='t'">BK</xsl:when>
-        <xsl:when test="$leader6='p'">MM</xsl:when>
+        <xsl:when test="$leader6='p'">MX</xsl:when>
         <xsl:when test="$leader6='m'">CF</xsl:when>
         <xsl:when test="$leader6='e' or $leader6='f'">MP</xsl:when>
         <xsl:when test="$leader6='g' or $leader6='k' or $leader6='o' 
                          or $leader6='r'">VM</xsl:when>
-        <xsl:when test="$leader6='c' or $leader6='d' or $leader6='i' 
-                         or $leader6='j'">MU</xsl:when>
+        <xsl:when test="$leader6='i' or $leader6='j'">MU</xsl:when>
+        <xsl:when test="$leader6='c' or $leader6='d'">PR</xsl:when>
       </xsl:choose>
     </xsl:variable>
 
@@ -253,7 +252,7 @@ Free Software Foundation, 59 Temple Place - Suite 330, Boston, MA
    -->
    <xsl:template name="Abstract">
      <xsl:for-each select="marc:datafield[@tag='520']">
-       <z:index name="Abstract:w any:w">
+       <z:index name="any:w">
          <xsl:value-of select="."/>
        </z:index>
      </xsl:for-each>
@@ -718,7 +717,7 @@ database                   record was added to the
       <xsl:variable name="year" select="substring(marc:controlfield[@tag='008'],1,2)"/>
       <xsl:choose>
         <xsl:when test="$year &lt; 68">20</xsl:when>
-        <xsl:otherwise>20</xsl:otherwise>
+        <xsl:otherwise>19</xsl:otherwise>
       </xsl:choose>
       <xsl:value-of select="substring(marc:controlfield[@tag='008'],1,6)"/>
     </z:index>
@@ -774,7 +773,7 @@ Identifier-ISBN         7  International Standard Book     020
   <xsl:template name="ISBN">
     <xsl:for-each select="marc:datafield[@tag='020']/marc:subfield[@code='a']">
       <z:index name="ISBN:w ISBN:p">
-        <xsl:value-of select="./text()"/>
+        <xsl:value-of select="translate(./text(),'- ','')"/>
       </z:index>
     </xsl:for-each>
   </xsl:template>
@@ -791,7 +790,7 @@ Identifier-ISSN         8  International Standard Serial   022, 4XX$x,
   <xsl:template name="ISSN">
     <xsl:for-each select="marc:datafield[@tag='022']">
       <z:index name="ISSN:w ISSN:p">
-        <xsl:value-of select="./text()"/>
+        <xsl:value-of select="translate(./text(),'- ','')"/>
       </z:index>
     </xsl:for-each>
   </xsl:template>
@@ -1202,9 +1201,16 @@ Title                   4  A word, phrase, character,      130, 21X-24X, 440,
       </z:index>
     </xsl:for-each>
 
-    <xsl:for-each select="marc:datafield[@tag='490']/marc:subfield[@code='a']">
-      <z:index name="title:w title:p any:w">
-        <xsl:value-of select="./text()"/>
+    <xsl:for-each select="marc:datafield[@tag='490']">
+      <z:index name="title:w any:w">
+        <xsl:value-of select="marc:subfield[@code='a']/text()"/>
+      </z:index>
+      <z:index name="title-series:w title-series:p,title-series:s">
+        <xsl:value-of select="marc:subfield[@code='a']/text()"/>
+        <xsl:if test="marc:subfield[@code='v']">
+          <xsl:text> </xsl:text>
+          <xsl:value-of select="marc:subfield[@code='v']/text()"/>
+        </xsl:if>
       </z:index>
     </xsl:for-each>
     <xsl:for-each select="marc:datafield[@tag='600' or @tag='610' or @tag='611'
@@ -1214,7 +1220,7 @@ Title                   4  A word, phrase, character,      130, 21X-24X, 440,
         <xsl:value-of select="./text()"/>
       </z:index>
     </xsl:for-each>
-    <xsl:for-each select="marc:datafield[@tag='130' or @tag='730' or @tag='830']">
+    <xsl:for-each select="marc:datafield[@tag='130' or @tag='730'">
       <z:index name="title:w any:w Title-uniform:w">
         <xsl:value-of select="marc:subfield[@code='a']/text()"/>
         <xsl:for-each select="marc:subfield[contains('dfghiklmnoprstxv',@code)]">
@@ -1230,6 +1236,16 @@ Title                   4  A word, phrase, character,      130, 21X-24X, 440,
         </xsl:for-each>
       </z:index>
     </xsl:for-each>
+    <xsl:for-each select="marc:datafield[@tag='830']">
+      <z:index name="title-series:w title-series:p,title-series:s">
+        <xsl:value-of select="marc:subfield[@code='a']/text()"/>
+        <xsl:for-each select="marc:subfield[contains('dfgiklmnoprstv',@code)]">
+          <xsl:text> </xsl:text>
+          <xsl:value-of select="./text()"/>
+        </xsl:if>
+      </z:index>
+    </xsl:for-each>
+
     <xsl:for-each select="marc:datafield[@tag='240' or @tag='242' or @tag='243' or @tag='246' or @tag='247']">
       <z:index name="title:p title:w any:w">
         <xsl:value-of select="marc:subfield[@code='a']/text()"/>
