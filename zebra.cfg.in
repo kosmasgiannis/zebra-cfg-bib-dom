@@ -37,9 +37,9 @@ attset: explain.att
 # http://www.indexdata.dk/zebra/doc/grs.tkl
 # recordtype: dom.etc/dom-config.xml
 recordtype: dom.etc/dom-config-marc.xml
-iso2709.recordtype: dom.etc/dom-config-marc.xml
-marcxml.recordtype: dom.etc/dom-config.xml
-batchmarcxml.recordtype: dom.etc/dom-config-batch.xml
+#iso2709.recordtype: dom.etc/dom-config-marc.xml
+#marcxml.recordtype: dom.etc/dom-config.xml
+#batchmarcxml.recordtype: dom.etc/dom-config-batch.xml
 
 recordId: (bib1,Local-Number)
 

@@ -48,7 +48,7 @@ Bibliographic DOM config for MARC ISO2709 input
   <retrieve name="index">
     <xslt stylesheet="zebra-indexdefs.xsl"/>
   </retrieve>
-  <input>
+  <input syntax="xml">
     <marc inputcharset="utf-8"/>
   </input>
 </dom>
