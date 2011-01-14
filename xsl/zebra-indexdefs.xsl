@@ -107,12 +107,12 @@ Free Software Foundation, 59 Temple Place - Suite 330, Boston, MA
        </z:index>
      </xsl:for-each>
      <xsl:for-each select="marc:datafield[@tag='852']/marc:subfield[@code='j']">
-       <z:index name="Local-classification:w Local-classification:p">
+       <z:index name="any:w Local-classification:w Local-classification:p">
          <xsl:value-of select="./text()"/>
        </z:index>
      </xsl:for-each>
      <xsl:for-each select="marc:datafield[@tag='876']/marc:subfield[@code='p']">
-       <z:index name="Barcode:w Barcode:p">
+       <z:index name="any:w Barcode:w Barcode:p">
          <xsl:value-of select="./text()"/>
        </z:index>
      </xsl:for-each>
