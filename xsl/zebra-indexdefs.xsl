@@ -184,6 +184,7 @@ Free Software Foundation, 59 Temple Place - Suite 330, Boston, MA
        <!-- att 56              Code-institution -->
        <!-- att 57              Name-and-title -->      
        <!-- att 58              Name-geographic -->
+       <xsl:call-template name="Name-geographic"/>
        <!-- att 59              Place-publication -->
        <xsl:call-template name="Place-publication"/>
        <!-- att 60              CODEN -->
@@ -232,6 +233,7 @@ Free Software Foundation, 59 Temple Place - Suite 330, Boston, MA
        <!-- att 1031            Material-type -->
        <!-- att 1032            Doc-id -->
        <!-- att 1033            Host-item -->
+       <xsl:call-template name="Host-item"/>
        <!-- att 1034            Content-type -->
        <!-- att 1035            Anywhere -->
        <!-- att 1036            Author-Title-Subject -->
@@ -593,11 +595,13 @@ Code-language          54  A code that indicates the       008/35-37, 041
     <z:index name="Code-language:w Code-language:p">
       <xsl:value-of select="substring(marc:controlfield[@tag='008'],36,3)"/>
     </z:index>
+<!--
     <xsl:for-each select="marc:datafield[@tag='041']/marc:subfield[contains('abdefghj',@code)]">
       <z:index name="Code-language:w Code-language:p">
         <xsl:value-of select="./text()"/>
       </z:index>
     </xsl:for-each>
+-->
   </xsl:template>
 
    <!--
@@ -919,6 +923,26 @@ Name-geographic        58  Name of a country,              651
                            geographic feature.
 
    -->
+  <xsl:template name="Name-geographic">
+    <xsl:for-each select="marc:datafield[@tag='651']">
+      <z:index name="Name-geographic:w">
+        <xsl:value-of select="marc:subfield[@code='a']/text()"/>
+        <xsl:for-each select="marc:subfield[contains('bcdnqvxyz',@code)]">
+          <xsl:text> </xsl:text>
+          <xsl:value-of select="./text()"/>
+        </xsl:for-each>
+      </z:index>
+      <z:index name="Name-geographic:p">
+        <xsl:value-of select="marc:subfield[@code='a']/text()"/>
+        <xsl:for-each select="marc:subfield[contains('bcdnevxyz',@code)]">
+          <xsl:text> </xsl:text>
+          <xsl:value-of select="./text()"/>
+        </xsl:for-each>
+      </z:index>
+    </xsl:for-each>
+
+  </xsl:template>
+
    <!--
 Name-geographic-place- 59  City or town where an item      008/15-17, 260$a
 publication                was published.
@@ -1015,7 +1039,6 @@ Subject                21  The primary topic on which a    600, 610, 611, 630,
         </xsl:for-each>
       </z:index>
     </xsl:for-each>
-
     <xsl:for-each select="marc:datafield[@tag='600' or @tag='610' or @tag='611' or @tag='630' or
                                          @tag='650' or @tag='651' or @tag='653' or @tag='654' or
                                          @tag='655' or @tag='656' or @tag='657']/marc:subfield[contains('abcdefghjklmnopqrstuvxyz',@code)]">
@@ -1023,9 +1046,7 @@ Subject                21  The primary topic on which a    600, 610, 611, 630,
           <xsl:value-of select="."/><xsl:text> </xsl:text>
       </z:index>
     </xsl:for-each>
-    <xsl:for-each select="marc:datafield[@tag='600']
-                          |marc:datafield[@tag='650']
-                          |marc:datafield[@tag='651']
+    <xsl:for-each select="marc:datafield[@tag='600'] |marc:datafield[@tag='650'] |marc:datafield[@tag='651']
                           |marc:datafield[@tag='653']">
       <z:index name="Subject-heading:p">
         <xsl:value-of select="."/>
@@ -1180,7 +1201,7 @@ Title                   4  A word, phrase, character,      130, 21X-24X, 440,
         </xsl:choose>
       </xsl:variable>
 
-      <z:index name="title:w title:p any:w">
+      <xsl:variable name="tit">
         <xsl:value-of select="marc:subfield[@code='a']/text()"/>
         <xsl:if test="marc:subfield[@code='b']">
           <xsl:text> </xsl:text>
@@ -1194,7 +1215,17 @@ Title                   4  A word, phrase, character,      130, 21X-24X, 440,
           <xsl:text> </xsl:text>
           <xsl:value-of select="marc:subfield[@code='p']/text()"/>
         </xsl:if>
+      </xsl:variable>
+
+      <z:index name="title:w title:p any:w">
+        <xsl:value-of select="$tit"/>
       </z:index>
+
+      <xsl:if test="marc:subfield[@code='b']">
+        <z:index name="title:w any:w">
+          <xsl:value-of select="marc:subfield[@code='b']/text()"/>
+        </z:index>
+      </xsl:if>
 
       <z:index name="title:s">
         <xsl:value-of select="substring(marc:subfield[@code='a']/text(), $chop)"/>
@@ -1346,6 +1377,13 @@ Title-host-item      1033  The title of the item            773$t
                            article in the journal.
 
    -->
+  <xsl:template name="Host-item">
+    <xsl:for-each select="marc:datafield[@tag='773']/marc:subfield[@code='t']">
+      <z:index name="title:w title:p any:w Host-item:p Host-item:w">
+        <xsl:value-of select="marc:subfield[@code='t']/text()"/>
+      </z:index>
+    </xsl:for-each>
+  </xsl:template>
    <!--
 Title-key              33  The unique name assigned to     222
                            a serial by the International
