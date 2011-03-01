@@ -1221,9 +1221,9 @@ Title                   4  A word, phrase, character,      130, 21X-24X, 440,
         <xsl:value-of select="$tit"/>
       </z:index>
 
-      <xsl:if test="marc:subfield[@code='b']">
+      <xsl:if test="marc:subfield[@code='c']">
         <z:index name="title:w any:w">
-          <xsl:value-of select="marc:subfield[@code='b']/text()"/>
+          <xsl:value-of select="marc:subfield[@code='c']/text()"/>
         </z:index>
       </xsl:if>
 
@@ -1380,7 +1380,7 @@ Title-host-item      1033  The title of the item            773$t
   <xsl:template name="Host-item">
     <xsl:for-each select="marc:datafield[@tag='773']/marc:subfield[@code='t']">
       <z:index name="title:w title:p any:w Host-item:p Host-item:w">
-        <xsl:value-of select="marc:subfield[@code='t']/text()"/>
+        <xsl:value-of select="./text()"/>
       </z:index>
     </xsl:for-each>
   </xsl:template>
