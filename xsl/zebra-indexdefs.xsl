@@ -1222,7 +1222,7 @@ Title                   4  A word, phrase, character,      130, 21X-24X, 440,
       </z:index>
 
       <xsl:if test="marc:subfield[@code='c']">
-        <z:index name="title:w any:w">
+        <z:index name="title:w any:w Author:w">
           <xsl:value-of select="marc:subfield[@code='c']/text()"/>
         </z:index>
       </xsl:if>
