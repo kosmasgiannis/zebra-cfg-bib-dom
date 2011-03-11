@@ -777,7 +777,7 @@ Identifier-ISBN         7  International Standard Book     020
   <xsl:template name="ISBN">
     <xsl:for-each select="marc:datafield[@tag='020']/marc:subfield[@code='a']">
       <z:index name="ISBN:w ISBN:p">
-        <xsl:value-of select="translate(./text(),'- ','')"/>
+        <xsl:value-of select="translate(substring-before(concat(./text(),'('),'('),'- ','')"/>
       </z:index>
     </xsl:for-each>
   </xsl:template>
