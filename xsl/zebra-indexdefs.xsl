@@ -333,7 +333,7 @@ Free Software Foundation, 59 Temple Place - Suite 330, Boston, MA
       </z:index>
       <z:index name="Author:s Author:p">
         <xsl:value-of select="marc:subfield[@code='a']/text()"/>
-        <xsl:for-each select="marc:subfield[contains('bcdn',@code)]">
+        <xsl:for-each select="marc:subfield[contains('bcdnq',@code)]">
           <xsl:text> </xsl:text>
           <xsl:value-of select="./text()"/>
         </xsl:for-each>
@@ -392,7 +392,7 @@ corporate                  of persons that is identified
       </z:index>
       <z:index name="Author-name-corporate:p">
         <xsl:value-of select="marc:subfield[@code='a']/text()"/>
-        <xsl:for-each select="marc:subfield[contains('bcdn',@code)]">
+        <xsl:for-each select="marc:subfield[contains('bcdnq',@code)]">
           <xsl:text> </xsl:text>
           <xsl:value-of select="./text()"/>
         </xsl:for-each>
@@ -423,7 +423,7 @@ conference                 representatives of various
       </z:index>
       <z:index name="Author-name-conference:p">
         <xsl:value-of select="marc:subfield[@code='a']/text()"/>
-        <xsl:for-each select="marc:subfield[contains('bcdn',@code)]">
+        <xsl:for-each select="marc:subfield[contains('bcdnq',@code)]">
           <xsl:text> </xsl:text>
           <xsl:value-of select="./text()"/>
         </xsl:for-each>
@@ -453,7 +453,7 @@ Author-name-personal 1004  A person's real name,           100, 400, 700, 800
       </z:index>
       <z:index name="Author-name-personal:p">
         <xsl:value-of select="marc:subfield[@code='a']/text()"/>
-        <xsl:for-each select="marc:subfield[contains('bcdn',@code)]">
+        <xsl:for-each select="marc:subfield[contains('bcdnq',@code)]">
           <xsl:text> </xsl:text>
           <xsl:value-of select="./text()"/>
         </xsl:for-each>
@@ -1063,7 +1063,7 @@ Subject                21  The primary topic on which a    600, 610, 611, 630,
       </z:index>
       <z:index name="Subject-heading:p">
         <xsl:value-of select="marc:subfield[@code='a']/text()"/>
-        <xsl:for-each select="marc:subfield[contains('bcdnevxyz',@code)]">
+        <xsl:for-each select="marc:subfield[contains('bcdnqevxyz',@code)]">
           <xsl:text> </xsl:text>
           <xsl:value-of select="./text()"/>
         </xsl:for-each>
