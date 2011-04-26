@@ -25,6 +25,8 @@ Free Software Foundation, 59 Temple Place - Suite 330, Boston, MA
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
     xmlns:z="http://indexdata.com/zebra-2.0" 
     xmlns:marc="http://www.loc.gov/MARC21/slim" 
+    xmlns:exsl="http://exslt.org/common"
+    xmlns:str="http://exslt.org/strings"
     version="1.0">
 
   <xsl:output indent="yes" method="xml" version="1.0" encoding="UTF-8"/>
@@ -107,8 +109,60 @@ Free Software Foundation, 59 Temple Place - Suite 330, Boston, MA
        </z:index>
      </xsl:for-each>
      <xsl:for-each select="marc:datafield[@tag='852']/marc:subfield[@code='j']">
+<!--
        <z:index name="any:w Local-classification:w Local-classification:p">
          <xsl:value-of select="./text()"/>
+       </z:index>
+-->
+
+       <xsl:variable name="tokens-string">
+         <tokens>
+         <xsl:call-template name="tokenizestr">
+           <xsl:with-param name="input" select="./text()"/>
+           <xsl:with-param name="marker" select="' '"/>
+         </xsl:call-template>
+         </tokens>
+       </xsl:variable>
+       <xsl:variable name="tokens" select="exsl:node-set($tokens-string)" />
+
+       <xsl:variable name="this_cln">
+         <xsl:for-each select="$tokens/tokens/token">
+           <xsl:choose>
+             <xsl:when test="position() = 2">
+               <xsl:variable name="tokens2-string">
+                 <tokens>
+                 <xsl:call-template name="tokenizestr">
+                   <xsl:with-param name="input" select="./text()"/>
+                   <xsl:with-param name="marker" select="'.'"/>
+                 </xsl:call-template>
+                 </tokens>
+               </xsl:variable>
+               <xsl:variable name="tokens2" select="exsl:node-set($tokens2-string)" />
+               <xsl:variable name="subcln">
+                 <xsl:for-each select="$tokens2/tokens/token">
+                 <xsl:call-template name="padstr">
+                   <xsl:with-param name="input" select="./text()"/>
+                   <xsl:with-param name="padchar" select="'0'"/>
+                   <xsl:with-param name="len" select="3"/>
+                 </xsl:call-template>
+                 <xsl:if test="position() != last()">
+                   <xsl:text>.</xsl:text>
+                 </xsl:if>
+                 </xsl:for-each>
+               </xsl:variable>
+               <xsl:value-of select="$subcln"/>
+             </xsl:when>
+             <xsl:otherwise>
+               <xsl:value-of select="./text()"/>
+             </xsl:otherwise>
+           </xsl:choose>
+           <xsl:if test="position() != last()">
+               <xsl:text> </xsl:text>
+           </xsl:if>
+         </xsl:for-each>
+       </xsl:variable>
+       <z:index name="any:w Local-classification:w Local-classification:p">
+         <xsl:value-of select="$this_cln"/>
        </z:index>
      </xsl:for-each>
      <xsl:for-each select="marc:datafield[@tag='876']/marc:subfield[@code='p']">
@@ -1439,5 +1493,38 @@ Title-uniform           6  The particular title by which   130, 240, 730,
 
 
 
+
+ <xsl:template name="tokenizestr">
+ <xsl:param name="input" />
+ <xsl:param name="marker" />
+
+  <xsl:choose>
+   <xsl:when test="contains($input,$marker)">
+     <xsl:if test="string-length(substring-before($input,$marker)) &gt; 0">
+     <xsl:element name="token"><xsl:value-of select="substring-before($input,$marker)" /></xsl:element>
+     </xsl:if>
+     <xsl:call-template name="tokenizestr">
+       <xsl:with-param name="input" 
+           select="substring-after($input,$marker)" />
+       <xsl:with-param name="marker" select="$marker" />
+     </xsl:call-template>
+   </xsl:when>
+   <xsl:otherwise>
+    <xsl:if test="string-length($input) &gt; 0">
+       <xsl:element name="token"><xsl:value-of select="$input" /></xsl:element>
+    </xsl:if>
+   </xsl:otherwise>
+  </xsl:choose>
+
+ </xsl:template>
+
+ <xsl:template name="padstr">
+ <xsl:param name="input" />
+ <xsl:param name="padchar" />
+ <xsl:param name="len" />
+
+  <xsl:value-of select="concat(str:padding($len - string-length($input), $padchar), $input)"/>
+
+ </xsl:template>
 
 </xsl:stylesheet>
