@@ -771,7 +771,7 @@ database                   record was added to the
 
    -->
   <xsl:template name="date-added-todb">
-    <z:index name="Date/time-added-to-db:w Date/time-added-to-db:p">
+    <z:index name="Date/time-added-to-db:w Date/time-added-to-db:p Date/time-added-to-db:s">
       <xsl:variable name="year" select="substring(marc:controlfield[@tag='008'],1,2)"/>
       <xsl:choose>
         <xsl:when test="$year &lt; 68">20</xsl:when>
@@ -786,7 +786,7 @@ modified                   was last updated.
 
    -->
   <xsl:template name="date-last-modified">
-    <z:index name="Date/time-last-modified:w Date/time-last-modified:p">
+    <z:index name="Date/time-last-modified:w Date/time-last-modified:p Date/time-last-modified:s">
       <xsl:value-of select="substring(marc:controlfield[@tag='005'],1,8)"/>
     </z:index>
   </xsl:template>
