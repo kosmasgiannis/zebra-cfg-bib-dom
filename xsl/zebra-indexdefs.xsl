@@ -1281,7 +1281,7 @@ Title                   4  A word, phrase, character,      130, 21X-24X, 440,
         </z:index>
       </xsl:if>
 
-      <z:index name="title:s">
+      <z:index name="title" type="s">
         <xsl:value-of select="substring(marc:subfield[@code='a']/text(), $chop)"/>
       </z:index>
     </xsl:for-each>
@@ -1304,9 +1304,11 @@ Title                   4  A word, phrase, character,      130, 21X-24X, 440,
           <xsl:value-of select="marc:subfield[@code='p']/text()"/>
         </xsl:if>
       </z:index>
+<!--
       <z:index name="title:s">
         <xsl:value-of select="substring(marc:subfield[@code='a']/text(), $chop)"/>
       </z:index>
+-->
     </xsl:for-each>
 
     <xsl:for-each select="marc:datafield[@tag='490']">
