@@ -1282,7 +1282,7 @@ Title                   4  A word, phrase, character,      130, 21X-24X, 440,
         </z:index>
       </xsl:if>
 
-      <z:index name="title" type="s">
+      <z:index name="title:s">
         <xsl:value-of select="substring(marc:subfield[@code='a']/text(), $chop)"/>
       </z:index>
     </xsl:for-each>
