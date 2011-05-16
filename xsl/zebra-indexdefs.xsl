@@ -1436,7 +1436,7 @@ Title-host-item      1033  The title of the item            773$t
    -->
   <xsl:template name="Host-item">
     <xsl:for-each select="marc:datafield[@tag='773']/marc:subfield[@code='t']">
-      <z:index name="title:w title:p any:w Host-item:p Host-item:w">
+      <z:index name="any:w Host-item:p Host-item:w">
         <xsl:value-of select="./text()"/>
       </z:index>
     </xsl:for-each>
