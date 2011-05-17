@@ -24,7 +24,7 @@ equivalent ī(ii)
 equivalent uúùûũŭųűǔȕȗ
 equivalent ü(ue)
 equivalent ū(uu)
-equivalent eéèêẽĕęėěȅȇ
+equivalent eéèêẽĕęėěȅȇē
 equivalent ëē(ee)
 equivalent oóòõôŏǫȯőǒȍȏ
 equivalent Œœöø(oe)
@@ -59,6 +59,8 @@ map ς Σ
 # mapping diacritics to plain ASCII
 # A
 #map ß			(ss)
+map a︡			a
+map A︡			a
 map ā			a
 map Ā			a
 map á			a
@@ -113,6 +115,8 @@ map ȉ			i
 map Ȉ			i
 map ȋ			i
 map Ȋ			i
+map i︠			i
+map I︠			i
 # U  
 map ū			u
 map Ū			u
@@ -139,6 +143,8 @@ map Ȕ			u
 map ȗ			u
 map Ȗ			u
 # E  
+map ē			e
+map Ē			e
 map ê			e
 map Ê			e
 map ë			e
@@ -225,6 +231,10 @@ map Ṉ			n
 map ṇ			n
 map Ṇ			n
 # T  
+map t︠			t
+map T︠			t
+map ṯ			t
+map Ṯ			t
 map ṭ			t
 map Ṭ			t
 map (ț)			t 
@@ -233,6 +243,8 @@ map (Ț)			t
 map ḍ			d
 map Ḍ			d
 # S  
+map s︡			s
+map S︡			s
 map ś			s
 map Ś			s
 map ṣ			s
@@ -243,8 +255,10 @@ map š			s
 map Š			s
 map ṡ			s
 map Ṡ			s
-map (Ș)			s
-map (ș)			s
+map Ș			s
+map ș			s
+map s̆			s
+map S̆			s
 # M 
 map ṁ			m
 map Ṁ			m
@@ -254,6 +268,8 @@ map Ṃ			m
 map ḥ			h
 map Ḥ			h
 map ẖ			h
+map Ḫ			h
+map ḫ			h
 # Z 
 map ź			z
 map Ź			z
@@ -277,9 +293,14 @@ map ǧ			g
 map Ǧ			g
 map ğ			g
 map Ğ			g
+map ǵ			g
+map Ǵ			g
 # K 
 map ḵ			k
 map Ḵ			k
+# U
+map u︡			u
+map U︡			u
 # Y  
 map ý			y
 map Ý			y
@@ -307,8 +328,6 @@ map (ʻb)		b
 map (ʻB)		b
 map ł			l
 map Ł			l
-map (a︡)			a
-map (A︡)			a
 map (Ḳ)			k
 map (ḳ)			k
 map (ṭ)			t
@@ -318,3 +337,26 @@ map (Đ)			d
 map (đ)			d
 map (s̆)			s
 map (S̆)			s
+map (Ș)			s
+map (ș)			s
+map ṿ			v
+map t͡			t
+map i͡			i
+map ︡e			e
+
+map (kʻ)		k
+map (Kʻ)		k
+map (tʻ)		t
+map (Tʻ)		t
+map (cʻ)		c
+map (Cʻ)		c
+map (eʼ)		e
+map (Eʼ)		e
+map (oʻa)		(oa)
+map (OʻA)		(oa)
+map (lʹv)		(lv)
+map (LʹV)		(lv)
+map (aʾe)		(ae)
+map (AʾE)		(ae)
+map (aʼe)		(ae)
+map (AʼE)		(ae)
