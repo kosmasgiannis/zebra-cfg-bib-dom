@@ -402,7 +402,7 @@ Free Software Foundation, 59 Temple Place - Suite 330, Boston, MA
           <xsl:value-of select="./text()"/>
         </xsl:for-each>
       </z:index>
-      <z:index name="Contributor:p Contributor:s Author:s Author:p">
+      <z:index name="Contributor:p Author:p">
         <xsl:value-of select="marc:subfield[@code='a']/text()"/>
         <xsl:for-each select="marc:subfield[contains('bcdnq',@code)]">
           <xsl:text> </xsl:text>
