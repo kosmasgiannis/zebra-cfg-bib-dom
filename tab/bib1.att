@@ -109,3 +109,11 @@ att 8000	    Barcode
 att 8001	    Branch
 att 8002	    Collection
 att 8653	    I653
+att 8103	    Primary-Author
+att 8104	    Primary-Author-name-personal
+att 8105            Primary-Author-name-corporate
+att 8106            Primary-Author-name-conference
+att 8703	    Contributor
+att 8704	    Contributor-name-personal
+att 8705            Contributor-name-corporate
+att 8706            Contributor-name-conference

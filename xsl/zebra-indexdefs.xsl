@@ -378,15 +378,31 @@ Free Software Foundation, 59 Temple Place - Suite 330, Boston, MA
 
    -->
   <xsl:template name="Author">
-    <xsl:for-each select="marc:datafield[@tag='100' or @tag='700' or @tag='110' or @tag='710' or @tag='111' or @tag='711']">
-      <z:index name="Author:w any:w">
+    <xsl:for-each select="marc:datafield[@tag='100' or @tag='110' or @tag='111']">
+      <z:index name="Primary-Author:w Author:w any:w">
         <xsl:value-of select="marc:subfield[@code='a']/text()"/>
         <xsl:for-each select="marc:subfield[contains('bcdnq',@code)]">
           <xsl:text> </xsl:text>
           <xsl:value-of select="./text()"/>
         </xsl:for-each>
       </z:index>
-      <z:index name="Author:s Author:p">
+      <z:index name="Author:s Author:p Primary-Author:p Primary-Author:s">
+        <xsl:value-of select="marc:subfield[@code='a']/text()"/>
+        <xsl:for-each select="marc:subfield[contains('bcdnq',@code)]">
+          <xsl:text> </xsl:text>
+          <xsl:value-of select="./text()"/>
+        </xsl:for-each>
+      </z:index>
+    </xsl:for-each>
+    <xsl:for-each select="marc:datafield[@tag='700' or @tag='710' or @tag='711']">
+      <z:index name="Contributor:w Author:w any:w">
+        <xsl:value-of select="marc:subfield[@code='a']/text()"/>
+        <xsl:for-each select="marc:subfield[contains('bcdnq',@code)]">
+          <xsl:text> </xsl:text>
+          <xsl:value-of select="./text()"/>
+        </xsl:for-each>
+      </z:index>
+      <z:index name="Contributor:p Contributor:s Author:s Author:p">
         <xsl:value-of select="marc:subfield[@code='a']/text()"/>
         <xsl:for-each select="marc:subfield[contains('bcdnq',@code)]">
           <xsl:text> </xsl:text>
@@ -437,20 +453,36 @@ corporate                  of persons that is identified
 
    -->
   <xsl:template name="Author-name-corporate">
-    <xsl:for-each select="marc:datafield[@tag='110' or @tag='710']">
-      <z:index name="Author-name-corporate:w">
+    <xsl:for-each select="marc:datafield[@tag='110']">
+      <z:index name="Author-name-corporate:w Primary-Author-name-corporate:w">
         <xsl:value-of select="marc:subfield[@code='a']/text()"/>
         <xsl:for-each select="marc:subfield[contains('bcdnq',@code)]">
           <xsl:text> </xsl:text>
           <xsl:value-of select="./text()"/>
         </xsl:for-each>
       </z:index>
-      <z:index name="Author-name-corporate:p">
+      <z:index name="Author-name-corporate:p Primary-Author-name-corporate:p">
         <xsl:value-of select="marc:subfield[@code='a']/text()"/>
         <xsl:for-each select="marc:subfield[contains('bcdnq',@code)]">
           <xsl:text> </xsl:text>
           <xsl:value-of select="./text()"/>
         </xsl:for-each>
+      </z:index>
+    </xsl:for-each>
+    <xsl:for-each select="marc:datafield[@tag='710']">
+      <z:index name="Author-name-corporate:w Contributor-name-corporate:w">
+        <xsl:value-of select="marc:subfield[@code='a']/text()"/>
+        <xsl:for-each select="marc:subfield[contains('bcdnq',@code)]">
+          <xsl:text> </xsl:text>
+          <xsl:value-of select="./text()"/>
+        </xsl:for-each>
+      </z:index>
+      <z:index name="Author-name-corporate:p Contributor-name-corporate:p">
+        <xsl:value-of select="marc:subfield[@code='a']/text()"/>
+        <xsl:for-each select="marc:subfield[contains('bcdnq',@code)]">
+          <xsl:text> </xsl:text>
+          <xsl:value-of select="./text()"/>
+        </xsl:for-each> 
       </z:index>
     </xsl:for-each>
   </xsl:template>
@@ -468,15 +500,31 @@ conference                 representatives of various
 
    -->
   <xsl:template name="Author-name-conference">
-    <xsl:for-each select="marc:datafield[@tag='111' or @tag='711']">
-      <z:index name="Author-name-conference:w">
+    <xsl:for-each select="marc:datafield[@tag='111']">
+      <z:index name="Author-name-conference:w Primary-Author-name-conference:w">
         <xsl:value-of select="marc:subfield[@code='a']/text()"/>
         <xsl:for-each select="marc:subfield[contains('bcdnq',@code)]">
           <xsl:text> </xsl:text>
           <xsl:value-of select="./text()"/>
         </xsl:for-each>
       </z:index>
-      <z:index name="Author-name-conference:p">
+      <z:index name="Author-name-conference:p Primary-Author-name-conference:p">
+        <xsl:value-of select="marc:subfield[@code='a']/text()"/>
+        <xsl:for-each select="marc:subfield[contains('bcdnq',@code)]">
+          <xsl:text> </xsl:text>
+          <xsl:value-of select="./text()"/>
+        </xsl:for-each>
+      </z:index>
+    </xsl:for-each>
+    <xsl:for-each select="marc:datafield[@tag='711']">
+      <z:index name="Author-name-conference:w Contributor-name-conference:w">
+        <xsl:value-of select="marc:subfield[@code='a']/text()"/>
+        <xsl:for-each select="marc:subfield[contains('bcdnq',@code)]">
+          <xsl:text> </xsl:text>
+          <xsl:value-of select="./text()"/>
+        </xsl:for-each>
+      </z:index>
+      <z:index name="Author-name-conference:p Contributor-name-conference:p">
         <xsl:value-of select="marc:subfield[@code='a']/text()"/>
         <xsl:for-each select="marc:subfield[contains('bcdnq',@code)]">
           <xsl:text> </xsl:text>
@@ -498,15 +546,31 @@ Author-name-personal 1004  A person's real name,           100, 400, 700, 800
    -->
 
   <xsl:template name="Author-name-personal">
-    <xsl:for-each select="marc:datafield[@tag='100' or @tag='700']">
-      <z:index name="Author-name-personal:w">
+    <xsl:for-each select="marc:datafield[@tag='100']">
+      <z:index name="Author-name-personal:w Primary-Author-name-personal:w">
         <xsl:value-of select="marc:subfield[@code='a']/text()"/>
         <xsl:for-each select="marc:subfield[contains('bcdnq',@code)]">
           <xsl:text> </xsl:text>
           <xsl:value-of select="./text()"/>
         </xsl:for-each>
       </z:index>
-      <z:index name="Author-name-personal:p">
+      <z:index name="Author-name-personal:p Primary-Author-name-personal:p">
+        <xsl:value-of select="marc:subfield[@code='a']/text()"/>
+        <xsl:for-each select="marc:subfield[contains('bcdnq',@code)]">
+          <xsl:text> </xsl:text>
+          <xsl:value-of select="./text()"/>
+        </xsl:for-each>
+      </z:index>
+    </xsl:for-each>
+    <xsl:for-each select="marc:datafield[@tag='700']">
+      <z:index name="Author-name-personal:w Contributor-name-personal:w">
+        <xsl:value-of select="marc:subfield[@code='a']/text()"/>
+        <xsl:for-each select="marc:subfield[contains('bcdnq',@code)]">
+          <xsl:text> </xsl:text>
+          <xsl:value-of select="./text()"/>
+        </xsl:for-each>
+      </z:index>
+      <z:index name="Author-name-personal:p Contributor-name-personal:p">
         <xsl:value-of select="marc:subfield[@code='a']/text()"/>
         <xsl:for-each select="marc:subfield[contains('bcdnq',@code)]">
           <xsl:text> </xsl:text>
