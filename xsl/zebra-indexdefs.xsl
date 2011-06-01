@@ -1358,7 +1358,7 @@ Title                   4  A word, phrase, character,      130, 21X-24X, 440,
           <xsl:otherwise><xsl:value-of select="number(@ind2 + 1)"/></xsl:otherwise>
         </xsl:choose>
       </xsl:variable>
-      <z:index name="title:w title:p any:w">
+      <z:index name="title:w title:p title:s any:w">
         <xsl:value-of select="marc:subfield[@code='a']/text()"/>
         <xsl:if test="marc:subfield[@code='n']">
           <xsl:text> </xsl:text>
@@ -1393,7 +1393,7 @@ Title                   4  A word, phrase, character,      130, 21X-24X, 440,
     <xsl:for-each select="marc:datafield[@tag='600' or @tag='610' or @tag='611'
                                          or @tag='700' or @tag='710' or @tag='711'
                                          or @tag='800' or @tag='810' or @tag='811']/marc:subfield[@code='t']">
-      <z:index name="title:w title:p any:w">
+      <z:index name="title:w title:p title:s any:w">
         <xsl:value-of select="./text()"/>
       </z:index>
     </xsl:for-each>
@@ -1405,7 +1405,7 @@ Title                   4  A word, phrase, character,      130, 21X-24X, 440,
           <xsl:value-of select="./text()"/>
         </xsl:for-each>
       </z:index>
-      <z:index name="title:p Title-uniform:p">
+      <z:index name="title:p title:s Title-uniform:p">
         <xsl:value-of select="marc:subfield[@code='a']/text()"/>
         <xsl:for-each select="marc:subfield[contains('dfghiklmnoprstxv',@code)]">
           <xsl:text> </xsl:text>
@@ -1424,7 +1424,7 @@ Title                   4  A word, phrase, character,      130, 21X-24X, 440,
     </xsl:for-each>
 
     <xsl:for-each select="marc:datafield[@tag='240' or @tag='242' or @tag='243' or @tag='246' or @tag='247']">
-      <z:index name="title:p title:w any:w">
+      <z:index name="title:p title:s title:w any:w">
         <xsl:value-of select="marc:subfield[@code='a']/text()"/>
         <xsl:for-each select="marc:subfield[contains('bnp',@code)]">
           <xsl:text> </xsl:text>
