@@ -7,28 +7,13 @@ encoding utf-8
 # basic character set
 # lowercase {0-9}{a-z}
 # uppercase {0-9}{A-Z}
-lowercase {0-9}{a-z}ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩ
-uppercase {0-9}{A-Z}αβγδεζηθικλμνξοπρστυφχψω
+lowercase {0-9}{a-z}ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩњабвгдежзийклмнопрстуфхцчшщъыьэюяђѓћќѣ
+uppercase {0-9}{A-Z}αβγδεζηθικλμνξοπρστυφχψωЊАБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯЂЃЋЌѢ
 
 # Breaking characters
-# space {\001-\040}!"#$%&'\()*+,-./:;<=>?@\[\\]^_`\{|}~’
-space {\001-\040}!"#$%&'\()*+,-./:;<=>?@\[\\]^_`\{|}~΄¨΅’
+space {\001-\040}!"#$%&'\()*+,-./:;<=>?@\[\\]^_`\{|}~΄¨΅’¡¢£¤§«®°±²³´µ¶·¹º»–‘’“”…⁰⁴⁶⁸ℓ÷′
 
-# Characters to be considered equivalent for searching purposes
-equivalent aáàãåâăąȧǎȁȃ
-equivalent ӕä(ae)
-equivalent ā(aa)
-equivalent iíìîịĩĭįǐȉȋ
-equivalent ï(ie)
-equivalent ī(ii)
-equivalent uúùûũŭųűǔȕȗ
-equivalent ü(ue)
-equivalent ū(uu)
-equivalent eéèêẽĕęėěȅȇē
-equivalent ëē(ee)
-equivalent oóòõôŏǫȯőǒȍȏ
-equivalent Œœöø(oe)
-equivalent ō(oo)
+#map (ß) (ss)
 equivalent ß(ss)
 
 # Supplemental mappings
@@ -56,307 +41,262 @@ map ΰ Υ
 map ώ Ω
 # sigma teliko
 map ς Σ
-# mapping diacritics to plain ASCII
-# A
-#map ß			(ss)
-map a︡			a
-map A︡			a
-map ā			a
-map Ā			a
-map á			a
-map Á			a
-map à			a
-map À			a
-map ã			a
-map Ã			a
-map å			a
-map Å			a
-map â			a
-map Â			a
-map ä			a
-map Ä			a
-map ă			a
-map Ă			a
-map ą			a
-map Ą			a
-map ȧ			a
-map Ȧ			a
-map ǎ			a
-map Ǎ			a
-map ȁ			a
-map Ȁ			a
-map ȃ			a
-map Ȃ			a
-# AE 
-map ӕ			(ae)
-map Ӕ			(ae)
-# I 
-map ī			i
-map Ī			i
-map ï			i
-map Ï			i
-map î			i
-map Î			i
-map í			i
-map Í			i
-map ì			i
-map Ì			i
-map ị			i
-map Ị			i
-map ĩ			i
-map Ĩ			i
-map ĭ			i
-map Ĭ			i
-map į			i
-map Į			i
-map ǐ			i
-map Ǐ			i
-map ȉ			i
-map Ȉ			i
-map ȋ			i
-map Ȋ			i
-map i︠			i
-map I︠			i
-# U  
-map ū			u
-map Ū			u
-map ü			u
-map Ü			u
-map ù			u
-map Ù			u
-map ú			u
-map Ú			u
-map û			u
-map Û			u
-map ũ			u
-map Ũ			u
-map ŭ			u
-map Ŭ			u
-map ų			u
-map Ų			u
-map ű			u
-map Ű			u
-map ǔ			u
-map Ǔ			u
-map ȕ			u
-map Ȕ			u
-map ȗ			u
-map Ȗ			u
-# E  
-map ē			e
-map Ē			e
-map ê			e
-map Ê			e
-map ë			e
-map Ë			e
-map é			e
-map É			e
-map è			e
-map È			e
-map ē			e
-map Ē			e
-map ẽ			e
-map Ẽ			e
-map ĕ			e
-map Ĕ			e
-map ę			e
-map Ę			e
-map ė			e
-map Ė			e
-map ě			e
-map Ě			e
-map ȅ			e
-map Ȅ			e
-map ȇ			e
-map Ȇ			e
-# O  
-map ô			o
-map Ô			o
-map ó			o
-map Ó			o
-map ò			o
-map Ò			o
-map ö			o
-map Ö			o
-map õ			o
-map Õ			o
-map ø			o
-map Ø			o
-map ō			o
-map Ō			o
-map ǒ			o
-map Ǒ			o
-map ŏ			o
-map Ŏ			o
-map ǫ			o
-map Ǫ			o
-map ȯ			o
-map Ȯ			o
-map ő			o
-map Ő			o
-map ȍ			o
-map Ȍ			o
-map ȏ			o
-map Ȏ			o
-map Œ		(oe)
-map œ		(oe)
-# R  
-map ṛ			r
-map Ṛ			r
-map r̥			r
-map R̥			r
-map ṝ			r
-map Ṝ			r
-map ř			r
-map Ř			r
-map ṟ			r
-# L 
-map ḷ			l
-map Ḷ			l
-map ḹ			l
-map Ḹ			l
-map ḻ			l
-map Ḻ			l
-# N  
-map ṅ			n
-map Ṅ			n
-map ñ			n
-map Ñ			n
-map ǹ			n
-map Ǹ			n
-map ń			n
-map Ń			n
-map ṉ			n
-map Ṉ			n
-map ṇ			n
-map Ṇ			n
-# T  
-map t︠			t
-map T︠			t
-map ṯ			t
-map Ṯ			t
-map ṭ			t
-map Ṭ			t
-map (ț)			t 
-map (Ț)			t 
-# D 
-map ḍ			d
-map Ḍ			d
-# S  
-map s︡			s
-map S︡			s
-map ś			s
-map Ś			s
-map ṣ			s
-map Ṣ			s
-map ş			s
-map Ş			s
-map š			s
-map Š			s
-map ṡ			s
-map Ṡ			s
-map Ș			s
-map ș			s
-map s̆			s
-map S̆			s
-# M 
-map ṁ			m
-map Ṁ			m
-map ṃ			m
-map Ṃ			m
-# H  
-map ḥ			h
-map Ḥ			h
-map ẖ			h
-map Ḫ			h
-map ḫ			h
-# Z 
-map ź			z
-map Ź			z
-map ẓ			z
-map Ẓ			z
-map ż			z
-map Ż			z
-#C 
-map ç			c
-map Ç			c
-map ć			c
-map Ć			c
-map č			c
-map Č			c
-# G 
-map ǥ			g
-map Ǥ			g
-map ġ			g
-map Ġ			g
-map ǧ			g
-map Ǧ			g
-map ğ			g
-map Ğ			g
-map ǵ			g
-map Ǵ			g
-# K 
-map ḵ			k
-map Ḵ			k
-# U
-map u︡			u
-map U︡			u
-# Y  
-map ý			y
-map Ý			y
-
 # mapping blank string
-map (\x88.*\x89))   @
+map (\x88.*\x89)	@
 
-# some additional mappings (do not know if they work)
+map (ǽ) (ae)
+map (ǣ) (ae)
+map (Ǽ) (ae)
+map (Ǣ) (ae)
+map (u︡) u
+map (U︡) u
+map (i︠) i
+map (I︠) i
+map (i͡) i
+map (I͡) i
+map (a︡) a
+map (A︡) a
+map (t︠) t
+map (T︠) t
+map (t͡) t
+map (T͡) t
+map (S︡) s
+map (s︡) s
+map (s︡) s
+map (S︡) s
 
-map (Cʻ) 		c
-map (cʻ) 		c
-map (u︡)			u
-map (U︡)			u
-map (i︠)			i
-map (I︠)			i
-map (a︡)			a
-map (A︡)			a
-map (ʻa)		a
-map (ʻA)		a
-map (ʻu)		u
-map (ʻU)		u
-map (ʻi)		i
-map (ʻI)		i
-map (ʻb)		b
-map (ʻB)		b
-map ł			l
-map Ł			l
-map (Ḳ)			k
-map (ḳ)			k
-map (ṭ)			t
-map (ʻA)		a
-map (ʻa)		a
-map (Đ)			d
-map (đ)			d
-map (s̆)			s
-map (S̆)			s
-map (Ș)			s
-map (ș)			s
-map ṿ			v
-map t͡			t
-map i͡			i
-map ︡e			e
+map (ạ) a
+map (Ạ) a
+map (à) a
+map (À) a
+map (á) a
+map (Á) a
+map (â) a
+map (Â) a
+map (ã) a
+map (Ã) a
+map (ä) a
+map (Ä) a
+map (å) a
+map (Å) a
+map (Æ) (ae)
+map (æ) (ae
+map (Ā) a
+map (ā) a
+map (Ă) a
+map (ă) a
+map (ą) a
+map (Ą) a
+map (ǎ) a
+map (Ǎ) a
+map (ȧ) a
+map (Ȧ) a
+map (Ç) c
+map (ç) c
+map (Ć) c
+map (ć) c
+map (Č) c
+map (č) c
+map (ḋ) d
+map (Ḋ) d
+map (Ḍ) d
+map (ḍ) d
+map (ḏ) d
+map (Ḏ) d
+map (ď) d
+map (ð) d
+map (Ð) d
+map (Ď) d
+map (Đ) d
+map (đ) d
+map (È) e
+map (É) e
+map (Ê) e
+map (è) e
+map (é) e
+map (ê) e
+map (ë) e
+map (Ē) e
+map (ē) e
+map (ĕ) e
+map (Ĕ) e
+map (Ė) e
+map (ė) e
+map (ę) e
+map (Ę) e
+map (ě) e
+map (Ě) e
+map (ẽ) e
+map (Ẽ) e
+map (ḟ) f
+map (Ḟ) f
+map (Ǧ) g
+map (ǧ) g
+map (ǵ) g
+map (Ǵ) g
+map (ğ) g
+map (Ğ) g
+map (ġ) g
+map (Ġ) g
+map (Ḥ) h
+map (ḥ) h
+map (Ḫ) h
+map (ḫ) h
+map (ẖ) h
+map (ǐ) i
+map (Ǐ) i
+map (Ī) i
+map (ī) i
+map (Ĭ) i
+map (ĭ) i
+map (İ) i
+map (Ï) i
+map (ï) i
+map (Ì) i
+map (ì) i
+map (Í) i
+map (í) i
+map (Î) i
+map (î) i
+map (І) i
+map (і) i
+map (І) i
+map (і) i
+map (ї) i
+map (Ї) i
+map (ı) i
+map (I) i
+map (ј) j
+map (Ј) j
+map (ǰ) j
+map (ḱ) k
+map (Ḱ) k
+map (Ḳ) k
+map (ḳ) k
+map (Ľ) l
+map (ľ) l
+map (Ł) l
+map (ł) l
+map (ḿ) m
+map (Ḿ) m
+map (Ñ) n
+map (ñ) n
+map (ṇ) n
+map (Ṇ) n
+map (ń) n
+map (Ń) n
+map (ň) n
+map (Ň) n
+map (Ó) o
+map (ó) o
+map (Ö) o
+map (ö) o
+map (õ) o
+map (Õ) o
+map (ò) o
+map (Ò) o
+map (ô) o
+map (Ô) o
+map (ø) o
+map (Ø) o
+map (Ō) o
+map (ō) o
+map (ŏ) o
+map (Ŏ) o
+map (Ő) o
+map (ő) o
+map (Œ) o
+map (œ) o
+map (ơ) o
+map (Ơ) o
+map (ǒ) o
+map (Ǒ) o
+map (ṗ) p
+map (Ṗ) p
+map (ŕ) r
+map (Ŕ) r
+map (ŗ) r
+map (Ŗ) r
+map (Ř) r
+map (ř) r
+map (ṛ) r
+map (Ṛ) r
+map (Ś) s
+map (ś) s
+map (Ş) s
+map (ş) s
+map (Š) s
+map (š) s
+map (Ṣ) s
+map (ṣ) s
+map (Ţ) t
+map (ţ) t
+map (ť) t
+map (Ť) t
+map (ț) t
+map (Ț) t
+map (Ṭ) t
+map (ṭ) t
+map (ṯ) t
+map (Ṯ) t
+map (Ú) u
+map (ú) u
+map (Ü) u
+map (ü) u
+map (Ù) u
+map (ù) u
+map (Û) u
+map (û) u
+map (ũ) u
+map (Ū) u
+map (ū) u
+map (ŭ) u
+map (Ŭ) u
+map (ů) u
+map (ű) u
+map (Ư) u
+map (ǔ) u
+map (Ṿ) v
+map (ṿ) v
+map (Ẁ) w
+map (ẁ) w
+map (ý) y
+map (Ý) y
+map (ÿ) y
+map (Ÿ) y
+map (ŷ) y
+map (Ŷ) y
+map (ź) z
+map (Ź) z
+map (Ż) z
+map (ż) z
+map (Ž) z
+map (ž) z
+map (Ẓ) z
+map (ẓ) z
 
-map (kʻ)		k
-map (Kʻ)		k
-map (tʻ)		t
-map (Tʻ)		t
-map (cʻ)		c
-map (Cʻ)		c
-map (eʼ)		e
-map (Eʼ)		e
-map (oʻa)		(oa)
-map (OʻA)		(oa)
-map (lʹv)		(lv)
-map (LʹV)		(lv)
-map (aʾe)		(ae)
-map (AʾE)		(ae)
-map (aʼe)		(ae)
-map (AʼE)		(ae)
+equivalent aạẠàÀáÁâÂãÃäÄåÅĀāĂăąĄǎǍȧȦ(a︡)
+equivalent (ae)Ææ
+equivalent cÇçĆćČč
+equivalent dḋḊḌḍḏḎďðÐĎĐđ
+equivalent eÈÉÊèéêëĒēĕĔĖėęĘěĚẽẼ
+equivalent fḟḞ
+equivalent gǦǧǵǴğĞġĠ
+equivalent hḤḥḪḫẖ
+equivalent iǐǏĪīĬĭİÏïÌìÍíÎîІіІіїЇıI(i︠)
+equivalent jјЈǰ
+equivalent kḱḰḲḳ
+equivalent lĽľŁł
+equivalent mḿḾ
+equivalent nÑñṇṆńŃňŇ
+equivalent (oe)Œœ
+equivalent oÓóÖöõÕòÒôÔøØŌōŏŎŐőơƠǒǑ
+equivalent pṗṖ
+equivalent uÚúÜüÙùÛûũŪūŭůűƯǔŬ(u︡)
+equivalent rŕŔŗŖŘřṛṚ
+equivalent sŚśŞşŠšṢṣ
+equivalent tŢţťŤțȚṬṭṯṮ
+equivalent vṾṿ
+equivalent wẀẁ
+equivalent yýÝÿŸŷŶ
+equivalent zźŹŻżŽžẒẓ
