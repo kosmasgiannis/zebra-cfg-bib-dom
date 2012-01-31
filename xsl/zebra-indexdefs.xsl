@@ -98,6 +98,12 @@ Free Software Foundation, 59 Temple Place - Suite 330, Boston, MA
   </xsl:template>
 
   <xsl:template name="local_rules">
+     <xsl:for-each select="marc:datafield[@tag='099']/marc:subfield[@code='a']">
+       <z:index name="any:w Old-classification:w Old-classification:p">
+         <xsl:value-of select="./text()"/>
+       </z:index>
+     </xsl:for-each>
+
      <xsl:for-each select="marc:datafield[@tag='852']/marc:subfield[@code='a']">
        <z:index name="Branch:w Branch:p Branch:s">
          <xsl:value-of select="./text()"/>
