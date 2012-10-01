@@ -75,6 +75,7 @@ Free Software Foundation, 59 Temple Place - Suite 330, Boston, MA
                          or $leader6='r'">VM</xsl:when>
         <xsl:when test="$leader6='i' or $leader6='j'">MU</xsl:when>
         <xsl:when test="$leader6='c' or $leader6='d'">PR</xsl:when>
+        <xsl:otherwise></xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
 
@@ -84,9 +85,16 @@ Free Software Foundation, 59 Temple Place - Suite 330, Boston, MA
         <xsl:value-of select="$controlField001"/>
       </z:index>
 
-      <z:index name="Material-type:w Material-type:p">
-        <xsl:value-of select="$typeOf008"/>
-      </z:index>
+      <xsl:if test="string-length($typeOf008) &gt; 0">
+        <z:index name="Material-type:w Material-type:p">
+          <xsl:value-of select="$typeOf008"/>
+        </z:index>
+      </xsl:if>
+      <xsl:if test="(marc:datafield[@tag='490'] or marc:datafield[@tag='830']) and $typeOf008 != 'SE'">
+        <z:index name="Material-type:w Material-type:p">
+          <xsl:value-of select="'SE'"/>
+        </z:index>
+      </xsl:if>
 
       <!-- <xsl:attribute name="id"></xsl:attribute> -->
       <!-- <xsl:attribute name="type">update</xsl:attribute> -->
