@@ -90,11 +90,13 @@ Free Software Foundation, 59 Temple Place - Suite 330, Boston, MA
           <xsl:value-of select="$typeOf008"/>
         </z:index>
       </xsl:if>
+<!--
       <xsl:if test="(marc:datafield[@tag='490'] or marc:datafield[@tag='830']) and $typeOf008 != 'SE'">
         <z:index name="Material-type:w Material-type:p">
           <xsl:value-of select="'SE'"/>
         </z:index>
       </xsl:if>
+-->
 
       <!-- <xsl:attribute name="id"></xsl:attribute> -->
       <!-- <xsl:attribute name="type">update</xsl:attribute> -->
