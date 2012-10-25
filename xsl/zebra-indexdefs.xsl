@@ -1399,14 +1399,15 @@ Title                   4  A word, phrase, character,      130, 21X-24X, 440,
         </xsl:for-each>
       </z:index>
       <z:index name="title-series:w title-series:p title-series:s">
-        <xsl:value-of select="marc:subfield[@code='a']/text()"/>
-<!--
-        <xsl:if test="marc:subfield[@code='v']">
-          <xsl:text> </xsl:text>
-          <xsl:value-of select="marc:subfield[@code='v']/text()"/>
-        </xsl:if>
--->
+        <xsl:call-template name="chopPunctuation">
+          <xsl:with-param name="chopString" select="marc:subfield[@code='a']/text()"/>
+        </xsl:call-template>
       </z:index>
+      <xsl:if test="marc:subfield[@code='v']">
+        <z:index name="title-series:w title-series:p title-series:s">
+          <xsl:value-of select="concat(marc:subfield[@code='a']/text(), ' ', marc:subfield[@code='v']/text())"/>
+        </z:index>
+      </xsl:if>
     </xsl:for-each>
     <xsl:for-each select="marc:datafield[@tag='600' or @tag='610' or @tag='611'
                                          or @tag='700' or @tag='710' or @tag='711'
@@ -1612,6 +1613,21 @@ Title-uniform           6  The particular title by which   130, 240, 730,
 
   <xsl:value-of select="concat(str:padding($len - string-length($input), $padchar), $input)"/>
 
+ </xsl:template>
+
+ <xsl:template name="chopPunctuation">
+   <xsl:param name="chopString"/>
+   <xsl:variable name="length" select="string-length($chopString)"/>
+   <xsl:choose>
+     <xsl:when test="$length=0"/>
+     <xsl:when test="contains('.:,;/ ', substring($chopString,$length,1))">
+       <xsl:call-template name="chopPunctuation">
+         <xsl:with-param name="chopString" select="substring($chopString,1,$length - 1)"/>
+       </xsl:call-template>
+     </xsl:when>
+     <xsl:when test="not($chopString)"/>
+     <xsl:otherwise><xsl:value-of select="$chopString"/></xsl:otherwise>
+   </xsl:choose>
  </xsl:template>
 
 </xsl:stylesheet>
