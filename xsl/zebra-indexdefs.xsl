@@ -79,11 +79,44 @@ Free Software Foundation, 59 Temple Place - Suite 330, Boston, MA
       </xsl:choose>
     </xsl:variable>
 
+    <xsl:variable name="formOfItem">
+      <xsl:choose>
+        <xsl:when test="$typeOf008='BK'"><xsl:value-of select="substring(marc:controlfield[@tag='008'], 24, 1)"/></xsl:when>
+        <xsl:when test="$typeOf008='SE'"><xsl:value-of select="substring(marc:controlfield[@tag='008'], 24, 1)"/></xsl:when>
+        <xsl:when test="$typeOf008='AR'"><xsl:value-of select="substring(marc:controlfield[@tag='008'], 24, 1)"/></xsl:when>
+<!--
+        <xsl:when test="$typeOf008='CF'"><xsl:value-of select="substring(marc:controlfield[@tag='008'], 24, 1)"/></xsl:when>
+        <xsl:when test="$typeOf008='MP'"><xsl:value-of select="substring(marc:controlfield[@tag='008'], 30, 1)"/></xsl:when>
+        <xsl:when test="$typeOf008='MU'"><xsl:value-of select="substring(marc:controlfield[@tag='008'], 24, 1)"/></xsl:when>
+        <xsl:when test="$typeOf008='VM'"><xsl:value-of select="substring(marc:controlfield[@tag='008'], 30, 1)"/></xsl:when>
+        <xsl:when test="$typeOf008='MX'"><xsl:value-of select="substring(marc:controlfield[@tag='008'], 24, 1)"/></xsl:when>
+-->
+        <xsl:otherwise></xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+
+    <xsl:variable name="formOfItemVal">
+      <xsl:choose>
+        <xsl:when test="$formOfItem='o' or $formOfItem='q' or $formOfItem='s'">
+          <xsl:value-of select="'E'"/>
+        </xsl:when>
+        <xsl:otherwise>
+          <xsl:value-of select="''"/>
+        </xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+
     <z:record z:id="{$controlField001}" z:type="update">
 
       <z:index name="Local-number:n Local-number:w Local-number:s">
         <xsl:value-of select="$controlField001"/>
       </z:index>
+
+      <xsl:if test="string-length($formOfItemVal) &gt; 0">
+        <z:index name="Material-type:w Material-type:p">
+          <xsl:value-of select="concat($formOfItemVal, $typeOf008)"/>
+        </z:index>
+      </xsl:if>
 
       <xsl:if test="string-length($typeOf008) &gt; 0">
         <z:index name="Material-type:w Material-type:p">
