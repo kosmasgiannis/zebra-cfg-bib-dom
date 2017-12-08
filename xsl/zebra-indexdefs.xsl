@@ -384,7 +384,7 @@ Free Software Foundation, 59 Temple Place - Suite 330, Boston, MA
 
    -->
    <xsl:template name="Any">
-     <xsl:for-each select="marc:datafield[@tag='500' or @tag='530' or @tag='504' or @tag='505' or @tag='510' or @tag='546' or @tag='590']">
+     <xsl:for-each select="marc:datafield[@tag='500' or @tag='502' or @tag='530' or @tag='504' or @tag='505' or @tag='510' or @tag='546' or @tag='590']">
        <z:index name="any:w">
          <xsl:value-of select="."/>
        </z:index>
